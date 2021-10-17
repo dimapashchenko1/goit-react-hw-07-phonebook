@@ -1,4 +1,4 @@
-import ContactList from "./components/ContactLIst/ContactList";
+import ContactList from "./components/ContactList/ContactList";
 import Form from "./components/Form/Form";
 import Filter from "./components/Filter/Filter";
 import css from "./App.css";

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { addContact } from "../../redux/contacts/contacts-actions";
-import css from "./Form.module.css";
+import s from "./Form.module.css";
+import { addContact } from "../../redux/contacts/contacts-operations";
 import { useDispatch } from "react-redux";
 
-export default function Form({ onSubmit }) {
+export default function Form() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -26,14 +26,14 @@ export default function Form({ onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addContact(name, number));
-    setName("");
+    dispatch(addContact({ name, number }));
     setNumber("");
+    setName("");
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit}>
-      <label className={css.label}>
+    <form className={s.form} onSubmit={handleSubmit}>
+      <label className={s.label}>
         Name
         <input
           type="text"
@@ -44,10 +44,10 @@ export default function Form({ onSubmit }) {
           required
           onChange={handleChange}
           value={name}
-          className={css.input}
+          className={s.input}
         />
       </label>
-      <label className={css.label}>
+      <label className={s.label}>
         Number
         <input
           type="tel"
@@ -58,12 +58,24 @@ export default function Form({ onSubmit }) {
           required
           onChange={handleChange}
           value={number}
-          className={css.input}
+          className={s.input}
         />
       </label>
-      <button className={css.btn} type="submit">
+      <button className={s.btn} type="submit">
         Add contact
       </button>
     </form>
   );
 }
+
+// const mapStateToProps = (state) => {
+//   return { contacts: state.contacts };
+// };
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     addContact: (name, number) => dispatch(addContact(name, number)),
+//   };
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Form);
